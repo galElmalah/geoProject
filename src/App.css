@@ -4,7 +4,7 @@
   font-weight: bold;
 }
 .leaflet-container {
-  height: 500px;
+  height: 100%;
 }
 
 .border {
@@ -16,6 +16,10 @@
   width: 70%;
   border-radius: 14px;
   margin-right: 15px;
+}
+
+h2 {
+  margin-top: 0;
 }
 
 main {
@@ -30,6 +34,7 @@ main {
 
 .add-weather-layer {
   margin-top: 20px;
+  text-align: left;
 }
 
 .card {
@@ -49,6 +54,18 @@ main {
   margin: 0 auto;
 }
 
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.layers-wrapper {
+  display: flex;
+}
+
+.layers-wrapper > section {
+  margin-right: 20px;
+}
 /* ************************ */
 
 .btn {
