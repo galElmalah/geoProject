@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   text-transform: capitalize;
+  font-weight: bold;
 }
 .leaflet-container {
   height: 500px;
@@ -23,14 +24,22 @@ main {
   box-sizing: border-box;
 }
 
+.action-panel {
+  width: 30%;
+}
+
+.add-weather-layer {
+  margin-top: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 14px;
+}
+
 .weather-data {
   text-align: left;
-  padding: 20px;
-  width: 30%;
   height: 300px;
-  border-radius: 14px;
-  font-weight: bold;
-  text-transform: capitalize;
 }
 
 .icon {
@@ -38,4 +47,58 @@ main {
   width: 120px;
   height: 120px;
   margin: 0 auto;
+}
+
+/* ************************ */
+
+.btn {
+  outline: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 80%;
+  height: 70px;
+  cursor: pointer;
+  margin: 0 auto;
+  border: 3px solid rgb(99, 129, 228);
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  font: normal 'Advent Pro', Helvetica, sans-serif;
+  font-size: 20px;
+  color: rgb(99, 129, 228);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0),
+    color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  -moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0),
+    color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  -o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0),
+    color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  transition: background-color 0.3s cubic-bezier(0, 0, 0, 0),
+    color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-width 0.3s cubic-bezier(0, 0, 0, 0),
+    border-color 0.3s cubic-bezier(0, 0, 0, 0);
+}
+
+.btn:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgb(99, 129, 228);
+}
+
+.btn:active {
+  border: 2px solid rgb(99, 129, 228);
+  background: rgb(99, 129, 228);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }

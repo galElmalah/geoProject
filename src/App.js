@@ -13,6 +13,7 @@ class App extends Component {
       icon: '',
       description: '',
       temperature: 0,
+      isWeatherLayer: false,
     };
   }
 
@@ -30,8 +31,18 @@ class App extends Component {
     this.setState({ position: [lat, lng] });
   };
 
+  onAddWeatherLayer = () => {
+    this.setState(prevState => ({ isWeatherLayer: !prevState.isWeatherLayer }));
+  };
+
   render() {
-    const { position, description, icon, temperature } = this.state;
+    const {
+      position,
+      description,
+      icon,
+      temperature,
+      isWeatherLayer,
+    } = this.state;
     return (
       <div className="App">
         <header>
@@ -43,13 +54,21 @@ class App extends Component {
               position={position}
               onClick={this.onMapClick}
               weatherDescription={description}
+              isWeatherLayer={isWeatherLayer}
             />
           </div>
-          <section className={'weather-data border'}>
-            <h2>Weather Data</h2>
-            <p>{`${description}`}</p>
-            <p>{`${temperature}`} &deg; Celsisus</p>
-            <img className={'icon'} src={iconUrl(icon)} />
+          <section className={'action-panel'}>
+            <section className={'weather-data border card'}>
+              <h2>Weather Data</h2>
+              <p>{`${description}`}</p>
+              <p>{`${temperature}`} &deg; Celsisus</p>
+              <img className={'icon'} src={iconUrl(icon)} />
+            </section>
+            <section className={'add-weather-layer'}>
+              <button onClick={this.onAddWeatherLayer} className={'btn'}>
+                Load weather layer
+              </button>
+            </section>
           </section>
         </main>
       </div>
