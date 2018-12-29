@@ -1,8 +1,14 @@
+body {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  color: black;
+}
+
 .App {
   text-align: center;
   text-transform: capitalize;
   font-weight: bold;
 }
+
 .leaflet-container {
   height: 100%;
 }
@@ -46,14 +52,16 @@ main {
 
 .weather-data {
   text-align: left;
-  height: 300px;
+  height: 90px;
+  position: relative;
 }
 
 .icon {
-  display: block;
+  position: absolute;
   width: 120px;
   height: 120px;
-  margin: 0 auto;
+  display: block;
+  transform: translateX(180px);
 }
 iconSmall {
   width: 10px;
@@ -98,18 +106,13 @@ iconSmall {
   border-radius: 8px;
 }
 
-.info-container {
-  width: 65%;
+.table-container {
+  width: 100%;
+  margin-top: 30px;
 }
 
 
-
-
-body {
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-  color: #5e5d52;
-}
-
+/* ************* TABLE *********** */
 a {
   color: #337aa8;
 }
@@ -167,8 +170,8 @@ a:hover, a:focus {
   }
 }
 .responsive-table thead th {
-  background-color: #1d96b2;
-  border: 1px solid #1d96b2;
+  background-color: rgb(99, 129, 228);
+  border: 1px solid rgb(99, 129, 228);
   font-weight: normal;
   text-align: center;
   color: white;
@@ -263,13 +266,13 @@ a:hover, a:focus {
   }
 }
 .responsive-table tbody th[scope="row"] {
-  background-color: #1d96b2;
+  background-color: rgb(99, 129, 228);
   color: white;
 }
 @media (min-width: 30em) {
   .responsive-table tbody th[scope="row"] {
-    border-left: 1px solid #1d96b2;
-    border-bottom: 1px solid #1d96b2;
+    border-left: 1px solid rgb(99, 129, 228);
+    border-bottom: 1px solid rgb(99, 129, 228);
   }
 }
 @media (min-width: 48em) {
@@ -284,14 +287,14 @@ a:hover, a:focus {
 }
 @media (min-width: 48em) {
   .responsive-table tbody td {
-    border-left: 1px solid #1d96b2;
-    border-bottom: 1px solid #1d96b2;
+    border-left: 1px solid rgb(99, 129, 228);
+    border-bottom: 1px solid rgb(99, 129, 228);
     text-align: center;
   }
 }
 @media (min-width: 48em) {
   .responsive-table tbody td:last-of-type {
-    border-right: 1px solid #1d96b2;
+    border-right: 1px solid rgb(99, 129, 228);
   }
 }
 .responsive-table tbody td[data-type=currency] {
@@ -315,7 +318,7 @@ a:hover, a:focus {
 }
 
 
-/* ************************ */
+/* ************* BUTTON *********** */
 
 .btn {
   outline: none;

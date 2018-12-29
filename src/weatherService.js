@@ -23,12 +23,14 @@ export const fetchWeather = async (lat, lng) => {
     const cityName = weatherData.name;
     const pressure = weatherData.main.pressure;
     const humidity = weatherData.main.humidity;
+    const windDeg = weatherData.wind.deg;
+    const windSpeed = weatherData.wind.speed;
     return {
       temperature: currentTemp,
       icon,
       description,
       cityName,
-      currentElementDetails: {cityName, currentTemp, icon, description, pressure, humidity}
+      currentElementDetails: {cityName, currentTemp, icon, description, pressure, humidity, windDeg, windSpeed}
     };
   } catch (err) {
     console.log(err);

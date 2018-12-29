@@ -81,11 +81,13 @@ class App extends Component {
       layers,
       arrWeatherData
     } = this.state;
+
+    
     const rowTables = arrWeatherData.map((weather, index) => {
       return (
           <tr key = {index}>
             <td data-title="City Name">{weather.cityName}</td>
-            <td data-title="Degree">{weather.currentTemp}</td>
+            <td data-title="Degree">{weather.currentTemp }&deg;</td>
             <td data-title="Icon">{<img
                 alt={`${description} icon`}
                 className={'iconSmall'}
@@ -94,6 +96,8 @@ class App extends Component {
             <td data-title="Description">{weather.description}</td>
             <td data-title="Humidity">{weather.humidity}</td>
             <td data-title="Pressure">{weather.pressure}</td>
+            <td data-title="Wind Degree">{weather.windDeg}</td>
+            <td data-title="Wind Speed">{weather.windSpeed}</td>
           </tr>
         
       )
@@ -115,15 +119,15 @@ class App extends Component {
           </div>
           <section className={'action-panel'}>
             <section className={'weather-data border card'}>
-              <h2>Weather Data</h2>
-              <p>{`${cityName}`}</p>
-              <p>{`${description}`}</p>
-              <p>{`${temperature}`} &deg; Celsisus</p>
               <img
                 alt={`${description} icon`}
                 className={'icon'}
                 src={iconUrl(icon)}
               />
+              <h2>{`${cityName}`}</h2>
+              <p>{`${description}`}</p>
+              <p>{`${temperature}`} &deg; Celsisus</p>
+        
             </section>
             <section className={'add-weather-layer border card'}>
               <h2>Add layers</h2>
@@ -174,23 +178,25 @@ class App extends Component {
                 </div>
             </section>
           </section>
-          <div className={"info-container"}>
+          <div className={"table-container"}>
 
-          <table className="responsive-table">
-            <thead>
-              <tr>
-                <th scope="col">City name</th>
-                <th scope="col">Degree</th>
-                <th scope="col">Icon</th>
-                <th scope="col">Description</th>
-                <th scope="col">Humidity</th>
-                <th scope="col">Pressure</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rowTables}
-            </tbody>
-          </table>
+            <table className="responsive-table">
+              <thead>
+                <tr>
+                  <th scope="col">City name</th>
+                  <th scope="col">Degree</th>
+                  <th scope="col">Icon</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Humidity</th>
+                  <th scope="col">Pressure</th>
+                  <th scope="col">Wind degree</th>
+                  <th scope="col">Wind speed</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rowTables}
+              </tbody>
+            </table>
         </div>
         </main>
       </div>
