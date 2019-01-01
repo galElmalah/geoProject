@@ -9,29 +9,33 @@ class App extends Component {
     super(props);
     this.state = {
       position: [32.0853, 34.7818],
-      cityName: "",
+      cityName: '',
       icon: '',
       description: '',
       temperature: 0,
       layers: [],
-      inputUserCountry: "",
-      inputUserCity: "",
-      arrWeatherData: []
+      inputUserCountry: '',
+      inputUserCity: '',
+      arrWeatherData: [],
     };
   }
 
   componentDidMount() {
     const [lat, lng] = this.state.position;
     fetchWeather(lat, lng).then(res => {
-      const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
-      this.setState({ ...res, arrWeatherData: arrUpdated });
+      if (res) {
+        const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
+        this.setState({ ...res, arrWeatherData: arrUpdated });
+      }
     });
   }
 
   onMapClick = async ({ latlng: { lat, lng } }) => {
     fetchWeather(lat, lng).then(res => {
-      const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
-      this.setState({ ...res, arrWeatherData: arrUpdated});
+      if (res) {
+        const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
+        this.setState({ ...res, arrWeatherData: arrUpdated });
+      }
     });
     this.setState({ position: [lat, lng] });
   };
@@ -50,26 +54,38 @@ class App extends Component {
   };
 
   onChangeCountry = e => {
-    this.setState({inputUserCountry: e.target.value})
+    this.setState({ inputUserCountry: e.target.value });
     console.log(this.state.inputUserCountry);
-  }
+  };
   onChangeCity = e => {
-    this.setState({inputUserCity: e.target.value})
+    this.setState({ inputUserCity: e.target.value });
     console.log(this.state.inputUserCity);
-  }
+  };
 
   searchByPlace = () => {
-    fetchWeatherByCountry(this.state.inputUserCountry, this.state.inputUserCity).then(res => {
-      const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
-      this.setState({ ...res, inputUserCountry :"", inputUserCity:"", arrWeatherData: arrUpdated});
+    fetchWeatherByCountry(
+      this.state.inputUserCountry,
+      this.state.inputUserCity
+    ).then(res => {
+      if (res) {
+        const arrUpdated = this.getUpdatedArray(res.currentElementDetails);
+        this.setState({
+          ...res,
+          inputUserCountry: '',
+          inputUserCity: '',
+          arrWeatherData: arrUpdated,
+        });
+      } else {
+        this.setState({ inputUserCountry: '', inputUserCity: '' });
+      }
     });
-  }
+  };
 
-  getUpdatedArray = (data) => {
+  getUpdatedArray = data => {
     const newArray = this.state.arrWeatherData;
     newArray.push(data);
     return newArray;
-  }
+  };
 
   render() {
     const {
@@ -79,29 +95,31 @@ class App extends Component {
       temperature,
       cityName,
       layers,
-      arrWeatherData
+      arrWeatherData,
     } = this.state;
 
-    
     const rowTables = arrWeatherData.map((weather, index) => {
       return (
-          <tr key = {index}>
-            <td data-title="City Name">{weather.cityName}</td>
-            <td data-title="Degree">{weather.currentTemp }&deg;</td>
-            <td data-title="Icon">{<img
+        <tr key={index}>
+          <td data-title="City Name">{weather.cityName}</td>
+          <td data-title="Degree">{weather.currentTemp}&deg;</td>
+          <td data-title="Icon">
+            {
+              <img
                 alt={`${description} icon`}
                 className={'iconSmall'}
                 src={iconUrl(weather.icon)}
-                />}</td>
-            <td data-title="Description">{weather.description}</td>
-            <td data-title="Humidity">{weather.humidity}</td>
-            <td data-title="Pressure">{weather.pressure}</td>
-            <td data-title="Wind Degree">{weather.windDeg}</td>
-            <td data-title="Wind Speed">{weather.windSpeed}</td>
-          </tr>
-        
-      )
-    })
+              />
+            }
+          </td>
+          <td data-title="Description">{weather.description}</td>
+          <td data-title="Humidity">{weather.humidity}</td>
+          <td data-title="Pressure">{weather.pressure}</td>
+          <td data-title="Wind Degree">{weather.windDeg}</td>
+          <td data-title="Wind Speed">{weather.windSpeed}</td>
+        </tr>
+      );
+    });
 
     return (
       <div className="App">
@@ -127,7 +145,6 @@ class App extends Component {
               <h2>{`${cityName}`}</h2>
               <p>{`${description}`}</p>
               <p>{`${temperature}`} &deg; Celsisus</p>
-        
             </section>
             <section className={'add-weather-layer border card'}>
               <h2>Add layers</h2>
@@ -168,18 +185,30 @@ class App extends Component {
                 </section>
               </div>
             </section>
-            <section className={"card border input-container"}>
-              <div className={"input-user"}>
-                 <span className="spanInput">country:</span><input value={this.state.inputUserCountry} onChange={this.onChangeCountry} 
-                    className="input" id={"countryInput"}/>
-                  <span className="spanInput">city:</span><input value={this.state.inputUserCity} required={true}
-                     onChange={this.onChangeCity} className="input" id={"cityInput"}/>
-                  <button className="btn" onClick={this.searchByPlace}>Search</button>
-                </div>
+            <section className={'card border input-container'}>
+              <div className={'input-user'}>
+                <span className="spanInput">country:</span>
+                <input
+                  value={this.state.inputUserCountry}
+                  onChange={this.onChangeCountry}
+                  className="input"
+                  id={'countryInput'}
+                />
+                <span className="spanInput">city:</span>
+                <input
+                  value={this.state.inputUserCity}
+                  required={true}
+                  onChange={this.onChangeCity}
+                  className="input"
+                  id={'cityInput'}
+                />
+                <button className="btn" onClick={this.searchByPlace}>
+                  Search
+                </button>
+              </div>
             </section>
           </section>
-          <div className={"table-container"}>
-
+          <div className={'table-container'}>
             <table className="responsive-table">
               <thead>
                 <tr>
@@ -193,11 +222,9 @@ class App extends Component {
                   <th scope="col">Wind speed</th>
                 </tr>
               </thead>
-              <tbody>
-                {rowTables}
-              </tbody>
+              <tbody>{rowTables}</tbody>
             </table>
-        </div>
+          </div>
         </main>
       </div>
     );
