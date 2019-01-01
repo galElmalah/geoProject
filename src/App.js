@@ -124,7 +124,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Geo weather app!</h1>
+          <h1>Geo weather app</h1>
         </header>
         <main>
           <div className={'map-wrapper border'}>
