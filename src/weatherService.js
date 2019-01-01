@@ -12,7 +12,7 @@ const temperatureConverter = kelvin => {
 export const fetchWeather = async (lat, lng) => {
   try {
     const response = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=${
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=${
         config.apiKey
       }`
     );
@@ -30,17 +30,26 @@ export const fetchWeather = async (lat, lng) => {
       icon,
       description,
       cityName,
-      currentElementDetails: {cityName, currentTemp, icon, description, pressure, humidity, windDeg, windSpeed}
+      currentElementDetails: {
+        cityName,
+        currentTemp,
+        icon,
+        description,
+        pressure,
+        humidity,
+        windDeg,
+        windSpeed,
+      },
     };
   } catch (err) {
     console.log(err);
   }
 };
 
-export const fetchWeatherByCountry = async (country="", city="") => {
+export const fetchWeatherByCountry = async (country = '', city = '') => {
   try {
     const response = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${
         config.apiKey
       }`
     );
@@ -57,7 +66,14 @@ export const fetchWeatherByCountry = async (country="", city="") => {
       description,
       position: coord,
       cityName,
-      currentElementDetails: {cityName, currentTemp, icon, description, pressure, humidity}
+      currentElementDetails: {
+        cityName,
+        currentTemp,
+        icon,
+        description,
+        pressure,
+        humidity,
+      },
     };
   } catch (err) {
     console.log(err);
